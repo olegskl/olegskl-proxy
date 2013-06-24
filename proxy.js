@@ -3,11 +3,12 @@
 'use strict';
 
 var fs = require('fs'),
+    http = require('http'),
     util = require('util'),
     path = require('path'),
     httpProxy = require('http-proxy'),
     httpProxyOptionsFilePath = path.join(__dirname, 'http-proxy-options.json'),
-    httpProxyPort = 80;
+    httpProxyPort = 8080;
 
 util.print('Reading proxy options file... ');
 fs.readFile(httpProxyOptionsFilePath, 'utf-8', function (error, contents) {
@@ -24,9 +25,9 @@ fs.readFile(httpProxyOptionsFilePath, 'utf-8', function (error, contents) {
             response.writeHead(302, {'Location': 'http://oregu.com'});
             response.end('Redirecting to http://oregu.com ...');
         } else {
-            proxy.proxyRequest(request, response, JSON.parse(contents));
+            proxy.proxyRequest(request, response);
         }
-    }).listen(httpProxyPort);
+    }, JSON.parse(contents)).listen(httpProxyPort);
 
     console.log('Proxy server running on port ' + httpProxyPort + '.');
 });
