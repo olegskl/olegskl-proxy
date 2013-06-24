@@ -1,0 +1,8 @@
+{
+    "name": "proxy",
+    "description": "oregu's proxy",
+    "version": "0.1.0",
+    "dependencies": {
+        "http-proxy" : "0.x"
+    }
+}
