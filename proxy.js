@@ -4,8 +4,9 @@
 
 var fs = require('fs'),
     util = require('util'),
+    path = require('path'),
     httpProxy = require('http-proxy'),
-    httpProxyOptionsFilePath = 'http-proxy-options.json',
+    httpProxyOptionsFilePath = path.join(__dirname, 'http-proxy-options.json'),
     httpProxyPort = 80;
 
 util.print('Reading proxy options file... ');
