@@ -8,7 +8,13 @@ var httpProxy = require('http-proxy'),
         hostnameOnly: true,
         router: {'oregu.com': '127.0.0.1:8000'}
     },
-    redirectThese = ['sklyanchuk.com', 'ridetojapan.com'],
+    redirectThese = [
+        'www.oregu.com',
+        'sklyanchuk.com',
+        'www.sklyanchuk.com',
+        'ridetojapan.com',
+        'www.ridetojapan.com'
+    ],
     httpProxyPort = 80;
 
 // Custom server redirect logic before proxying requests.
