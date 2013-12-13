@@ -7,7 +7,8 @@ var httpProxy = require('http-proxy'),
     httpProxyOptions = {
         hostnameOnly: true,
         router: {'oregu.com': '127.0.0.1:8000'}
-    };
+    },
+    port = 80;
 
 // Custom server redirect logic before proxying requests.
 function redirectOrProxy(request, response, proxy) {
@@ -24,4 +25,4 @@ function redirectOrProxy(request, response, proxy) {
 // and export it for clustering purposes:
 module.exports = httpProxy
     .createServer(redirectOrProxy, httpProxyOptions)
-    .listen(80);
+    .listen(port);
