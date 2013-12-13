@@ -1,8 +1,12 @@
 {
-    "name": "proxy",
-    "description": "oregu's proxy",
+    "name": "oregu-proxy",
+    "description": "A simple proxy for my personal website.",
     "version": "0.1.0",
     "dependencies": {
         "http-proxy" : "0.x"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/olegskl/oregu-proxy"
     }
 }
