@@ -1,4 +1,4 @@
 A simple proxy for my personal minimalistic website,
-[oregu.com](http://oregu.com)
+[olegskl.com](http://olegskl.com)
 
 http://opensource.org/licenses/mit-license.html
