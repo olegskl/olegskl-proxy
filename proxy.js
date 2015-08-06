@@ -1,19 +1,16 @@
-/* Proxy server for olegskl.com */
-
 /*jslint node: true */
 'use strict';
 
-var httpProxy = require('http-proxy'),
-    httpProxyOptions = {
-        hostnameOnly: true,
-        router: {'olegskl.com': '127.0.0.1:8000'}
-    },
-    port = 80;
+var http = require('http'),
+    httpProxy = require('http-proxy'),
+    config = require('./config'),
+    proxy = httpProxy.createProxyServer({});
 
 // Custom server redirect logic before proxying requests.
-function redirectOrProxy(request, response, proxy) {
-    if (request.headers.host === 'olegskl.com') {
-        proxy.proxyRequest(request, response);
+function redirectOrProxy(request, response) {
+    var target = config.proxyRoutesConfig[request.headers.host];
+    if (target) {
+        proxy.web(request, response, {target: target});
     } else {
         // Redirect other domains to olegskl.com:
         response.writeHead(302, {'Location': 'http://olegskl.com'});
@@ -23,6 +20,6 @@ function redirectOrProxy(request, response, proxy) {
 
 // Establish the proxy server with given options,
 // and export it for clustering purposes:
-module.exports = httpProxy
-    .createServer(redirectOrProxy, httpProxyOptions)
-    .listen(port);
+module.exports = http
+    .createServer(redirectOrProxy)
+    .listen(config.proxyPort);
