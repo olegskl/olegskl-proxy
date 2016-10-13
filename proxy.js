@@ -5,9 +5,10 @@ const proxy = httpProxy.createProxyServer({});
 
 // Custom server redirect logic before proxying requests.
 function redirectOrProxy(request, response) {
-  const target = config.proxyRoutesConfig[request.headers.host];
-  if (target) {
-    proxy.web(request, response, {target});
+  if (config.proxyRoutesConfig.hasOwnProperty(request.headers.host)) {
+    proxy.web(request, response, {
+      target: config.proxyRoutesConfig[request.headers.host]
+    });
   } else {
     // Redirect other domains to olegskl.com:
     response.writeHead(302, {Location: 'http://olegskl.com'});
