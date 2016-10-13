@@ -2,11 +2,24 @@
   "name": "olegskl-proxy",
   "description": "A simple proxy for my personal website.",
   "version": "0.1.1",
-  "dependencies": {
-    "http-proxy": "^1.11.1"
+  "scripts": {
+    "lint": "eslint *.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/olegskl/olegskl-proxy.git"
+  },
+  "dependencies": {
+    "http-proxy": "^1.11.1"
+  },
+  "devDependencies": {
+    "eslint": "^3.7.1",
+    "eslint-config-meetic": "^2.0.0"
+  },
+  "eslintConfig": {
+    "extends": "meetic",
+    "env": {
+      "node": true
+    }
   }
 }
